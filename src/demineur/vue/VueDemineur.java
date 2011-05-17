@@ -8,20 +8,21 @@ import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
+import demineur.controleur.ControleurBouton;
 import demineur.controleur.ControleurCase;
 import demineur.modele.ModeleDemineur;
-import demineur.options.Timer;
 
 @SuppressWarnings("serial")
 public class VueDemineur extends JFrame{
 
 	public ModeleDemineur modeleDem;
 
-	public static int compteur = 0;
-	public static int nbLignes = 10;
-	public static int nbColonnes = 10;
-	public static int nbBombes = 20;
-	
+	private int compteur = 0;
+	private int nbLignes = 10;
+	private int nbColonnes = 10;
+	private int nbBombes = 10;
+	private int nbDrap = 10;
+
 	public JPanel pnlPartie = new JPanel();
 	public JPanel pnlJeux = new JPanel();
 	public JPanel pnlInfo = new JPanel();
@@ -30,11 +31,16 @@ public class VueDemineur extends JFrame{
 	public JPanel pnlJeuxE = new JPanel();
 	public JPanel pnlOption = new JPanel();
 	
+	
 	public JButton btnPartie = new JButton();
 	
-	public static demineur.options.Timer timer ;
-	public static JLabel lblCptMines  = new JLabel();
-	public JButton btnRejouer = new JButton(new ImageIcon("C:\\Users\\Xantho\\Documents\\INFORMATIQUE\\JAVA\\Demineur\\pok.gif"));
+	private javax.swing.Timer timer ;
+	//private demineur.options.Timer timer ;
+	
+	private static JLabel lblCptDrap  = new JLabel();
+	public JButton btnRejouer = new JButton();
+	private ImageIcon pika = new ImageIcon("C:\\Users\\Xantho\\Documents\\INFORMATIQUE\\JAVA\\Demineur\\pok.gif");
+	private ImageIcon deadPika = new ImageIcon("C:\\Users\\Xantho\\Documents\\INFORMATIQUE\\JAVA\\Demineur\\deadPika.png");
 	public static JLabel lblTemps  = new JLabel();
 	
 	public JMenuBar menu = new JMenuBar();
@@ -77,20 +83,8 @@ public class VueDemineur extends JFrame{
 	    //pnlInfo.setSize(700, 100);
 	    pnlInfo.setBackground(Color.GREEN);
 	    pnlInfo.setLayout(new GridLayout(1,3));
-	    pnlInfo.add(lblCptMines);
+	    pnlInfo.add(lblCptDrap);
 	    pnlInfo.add(btnRejouer);
-
-	    
-	    javax.swing.Timer t = new javax.swing.Timer(1000, new ActionListener() {
-	          public void actionPerformed(ActionEvent e) 
-	          {
-	      	    lblTemps.setText(String.valueOf(compteur));
-	      	    compteur++;
-	          }
-	       });
-	    t.start();
-	    
-	    
 	    
 	    pnlInfo.add(lblTemps);
 
@@ -109,30 +103,60 @@ public class VueDemineur extends JFrame{
 	    pnlPartie.add("Center",pnlJeux);
 	    add(pnlPartie);
 		add(menu, BorderLayout.PAGE_START);
+		
+		btnRejouer.setIcon(pika);
+		btnRejouer.addActionListener( new ControleurBouton("btnRejouer",modeleDem,this));
+		LancementTimer();
+		
         setVisible(true);
-
 
     }
 
-
-	@SuppressWarnings("static-access")
-	private void RemplirGrille(int nbLig, int nbCol, int nbBom) {
+	public void RemplirGrille(int nbLig, int nbCol, int nbBom) {
 		
 		pnlGrille.setLayout(new GridLayout(nbLignes,nbColonnes));
 		
-		modeleDem = new ModeleDemineur();
+		modeleDem = new ModeleDemineur(this);
 		modeleDem.GenererGrille(nbCol,nbLig,nbBom);
 		
 		for (int i = 0 ; i < nbLig ; i++)
 		{
 			for (int j = 0 ;j < nbCol ; j++)
 			{
+
+					
 				JButton btnCase = new JButton();
-				btnCase.addMouseListener(new ControleurCase(modeleDem.get_tabCases(i,j),btnCase,modeleDem));
+				btnCase.addMouseListener(new ControleurCase(modeleDem.get_tabCases(i,j),btnCase,modeleDem,this));
+				/*if (j == 0 && i == 0)
+					btnCase.setName("toto");*/
 				pnlGrille.add(btnCase);
 				
 			}
-		}		
+		}
+        //System.out.println("le control " + pnlGrille.getComponent(0).getName());
+	}
+	
+	public void LancementTimer()
+	{
+	    timer = new javax.swing.Timer(1000, new ActionListener() {
+	          public void actionPerformed(ActionEvent e) 
+	          {
+	      	    lblTemps.setText(String.valueOf(compteur));
+	      	    compteur++;
+	      	    lblCptDrap.setText(Integer.toString(nbDrap));
+	          }
+	       });
+	    timer.start();
+	}
+	
+	public void StoperTimer()
+	{
+		timer.stop();
+	}
+	
+	public void RestartTimer()
+	{
+		timer.restart();
 	}
 	
 	
@@ -145,6 +169,57 @@ public class VueDemineur extends JFrame{
 		this.modeleDem = modeleDem;
 	}
     
-    
+	public int getNbLignes() {
+		return nbLignes;
+	}
+	public void setNbLignes(int nbLignes) {
+		this.nbLignes = nbLignes;
+	}
+
+	public int getNbColonnes() {
+		return nbColonnes;
+	}
+
+	public void setNbColonnes(int nbColonnes) {
+		this.nbColonnes = nbColonnes;
+	}
+
+	public int getNbBombes() {
+		return nbBombes;
+	}
+
+	public void setNbBombes(int nbBombes) {
+		this.nbBombes = nbBombes;
+	}
+	public int getNbDrap() {
+		return nbDrap;
+	}
+
+	public void setNbDrap(int nbDrap) {
+		this.nbDrap = nbDrap;
+	}
+	public JLabel getLblCptDrap() {
+		return lblCptDrap;
+	}
+
+	public void setLblCptDrap(String nbDrap) {
+		VueDemineur.lblCptDrap.setText(nbDrap);
+	}
+	
+	public int getCompteur() {
+		return compteur;
+	}
+
+	public javax.swing.Timer getTimer() {
+		return timer;
+	}
+	
+	public ImageIcon getDeadPika() {
+		return deadPika;
+	}
+
+
+
+
     
 }

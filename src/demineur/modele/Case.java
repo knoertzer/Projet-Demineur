@@ -4,18 +4,30 @@ import javax.swing.ImageIcon;
 
 public abstract class Case {
 
-	public int posX;
-	public int posY;
-	public ImageIcon flag = new ImageIcon ("C:\\Users\\Xantho\\Documents\\INFORMATIQUE\\JAVA\\Demineur\\flag.png");
-	public boolean isFlag;
+	private int posX;
+	private int posY;
+	public final ImageIcon flag = new ImageIcon ("C:\\Users\\Xantho\\Documents\\INFORMATIQUE\\JAVA\\Demineur\\flag.png");
+	private boolean isFlag;
+	private boolean decouverte;
 	
-	public Case(int posX, int posY) {
+	public Case(int posX, int posY) 
+	{
 		super();
 		this.posX = posX;
 		this.posY = posY;
 		this.isFlag = false;
+		this.decouverte = false;
+		
 	}
 	
+	public boolean isDecouverte() {
+		return decouverte;
+	}
+
+	public void setDecouverte(boolean decouverte) {
+		this.decouverte = decouverte;
+	}
+
 	public int getPosX() {
 		return posX;
 	}
