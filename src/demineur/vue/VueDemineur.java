@@ -217,6 +217,10 @@ public class VueDemineur extends JFrame{
 	public ImageIcon getDeadPika() {
 		return deadPika;
 	}
+	
+	public ImageIcon getPika() {
+		return pika;
+	}
 
 
 

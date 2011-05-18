@@ -68,6 +68,8 @@ public class ControleurCase implements MouseListener
 					_btnCase.setIcon(_case.flag);
 					_vue.setNbDrap(_vue.getNbDrap()-1);
 					_vue.setLblCptDrap(Integer.toString((_vue.getNbDrap())));
+					
+					//SI win
 					if (_modele.getDrapBienPose() == _vue.getNbBombes())
 					{
 						_vue.StoperTimer();
