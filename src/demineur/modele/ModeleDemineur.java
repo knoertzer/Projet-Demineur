@@ -14,6 +14,7 @@ public class ModeleDemineur {
 	public VueDemineur _vueDem;
 	private boolean _partieTermine;
 	private int DrapBienPose ;
+	private int NbCaseDecouverte ;
 
 	/***
 	 * @param args
@@ -24,6 +25,7 @@ public class ModeleDemineur {
 		_tabCases = new Case[vueDem.getNbLignes()][vueDem.getNbColonnes()];
 		this._vueDem = vueDem;
 		this._partieTermine = false;
+		this.NbCaseDecouverte = vueDem.getNbBombes();
 
 	}
 	
@@ -152,6 +154,7 @@ public class ModeleDemineur {
 		if (!_tabCases[lig][col].isDecouverte())
 		{
 			_tabCases[lig][col].setDecouverte(true);
+			NbCaseDecouverte++;
 			//Si bord gauche
 			if ( col -1 >= 0) // si on est tjrs dans la map
 			{
@@ -230,14 +233,22 @@ public class ModeleDemineur {
 		JButton btn = (JButton) _vueDem.pnlGrille.getComponent(lig*nbCol+col);
 		btn.setText(Integer.toString(_tabCases[lig][col].getIndice()));
 		ZeroDiscover(lig,col,nbLig, nbCol,btn);
-		_tabCases[lig][col].setDecouverte(true);
+		if (!_tabCases[lig][col].isDecouverte())
+		{
+			_tabCases[lig][col].setDecouverte(true);
+			NbCaseDecouverte++;
+		}
 	}
 	
 	public void DiscoverOneIndice (int lig , int col , int nbLig , int nbCol )
 	{
 		JButton btn = (JButton) _vueDem.pnlGrille.getComponent(lig*nbCol+col);
 		btn.setText(Integer.toString(_tabCases[lig][col].getIndice()));
-		_tabCases[lig][col].setDecouverte(true);
+		if (!_tabCases[lig][col].isDecouverte())
+		{
+			_tabCases[lig][col].setDecouverte(true);
+			NbCaseDecouverte++;
+		}
 	}
 	
 	public String score()
@@ -265,5 +276,33 @@ public class ModeleDemineur {
 			}
 		}
 	}
+	
+	/*public boolean CasesIndicesDecouvertent ()
+	{
+		boolean flagCaseDecouverte = true;
+		int lig =0, col = 0;
+		
+		while (lig < _vueDem.getNbLignes() && flagCaseDecouverte)
+		{
+			while (col < _vueDem.getNbColonnes() && flagCaseDecouverte)
+			{
+				if (_tabCases[lig][col] instanceof CaseIndice && !_tabCases[lig][col].isDecouverte())
+					flagCaseDecouverte = false;
+				col++;
+			}
+			col = 0;
+			lig++;
+		}
+		return flagCaseDecouverte;
+	}*/
+
+	public int getNbCaseDecouverte() {
+		return NbCaseDecouverte;
+	}
+
+	public void setNbCaseDecouverte(int inc) {
+		NbCaseDecouverte += inc;
+	}
+		
 
 }

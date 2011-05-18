@@ -20,8 +20,8 @@ public class VueDemineur extends JFrame{
 	private int compteur = 0;
 	private int nbLignes = 10;
 	private int nbColonnes = 10;
-	private int nbBombes = 10;
-	private int nbDrap = 10;
+	private int nbBombes = 3;
+	private int nbDrap = 3;
 
 	public JPanel pnlPartie = new JPanel();
 	public JPanel pnlJeux = new JPanel();

@@ -38,6 +38,7 @@ public class ControleurCase implements MouseListener
 			//Si clic gauche
 			if (e.getButton() == MouseEvent.BUTTON1)
 			{
+				//Si c'est une bombe
 				if ( _modele.EstBombe(_case.getPosX(), _case.getPosY()))
 				{
 					_btnCase.setIcon(_case.getImage());
@@ -48,6 +49,7 @@ public class ControleurCase implements MouseListener
 					_modele.AfficherBombes();
 					
 				}
+				//sinon c'est une case Indice
 				else
 				{
 					if (_case.getIndice() == 0)
@@ -55,8 +57,21 @@ public class ControleurCase implements MouseListener
 					_btnCase.setIcon(null);
 					_btnCase.setText(Integer.toString(_case.getIndice()));
 					
+					
+					//SI win
+					if (_modele.getDrapBienPose() == _vue.getNbBombes() && _modele.getNbCaseDecouverte() == (_vue.getNbColonnes()*_vue.getNbLignes())-1)
+					{
+						_vue.StoperTimer();
+						JOptionPane.showMessageDialog(null,"Vous avez gagné ! \n votre score est : " + _modele.score(),"Gangé",JOptionPane.INFORMATION_MESSAGE);
+					}
+					
 				}
-				_case.setDecouverte(true);
+				if (!_case.isDecouverte())
+				{
+					_case.setDecouverte(true);
+					_modele.setNbCaseDecouverte(1);
+				}
+
 			}
 			else
 			{
@@ -70,7 +85,7 @@ public class ControleurCase implements MouseListener
 					_vue.setLblCptDrap(Integer.toString((_vue.getNbDrap())));
 					
 					//SI win
-					if (_modele.getDrapBienPose() == _vue.getNbBombes())
+					if (_modele.getDrapBienPose() == _vue.getNbBombes() && _modele.getNbCaseDecouverte() == _vue.getNbColonnes()*_vue.getNbLignes())
 					{
 						_vue.StoperTimer();
 						JOptionPane.showMessageDialog(null,"Vous avez gagné ! \n votre score est : " + _modele.score(),"Gangé",JOptionPane.INFORMATION_MESSAGE);
