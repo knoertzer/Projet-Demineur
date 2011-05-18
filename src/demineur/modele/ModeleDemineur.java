@@ -3,8 +3,6 @@ package demineur.modele;
 import java.util.Random;
 
 import javax.swing.JButton;
-import javax.swing.JOptionPane;
-
 import demineur.vue.VueDemineur;
 
 public class ModeleDemineur {
@@ -25,6 +23,19 @@ public class ModeleDemineur {
 		this._vueDem = vueDem;
 		this._partieTermine = false;
 
+	}
+	
+	public ModeleDemineur(int colonne, int ligne, int bombe){
+		
+		//constructeur spécial pour la console
+		
+		_tabCases = new Case[ligne][colonne];
+		//this._vueDem = vueDem;
+		this._partieTermine = false;
+		
+		//on génère la grille
+		GenererGrille(colonne, ligne, bombe);
+		
 	}
 	
 	public Case get_tabCases(int x ,int y) {
@@ -265,5 +276,4 @@ public class ModeleDemineur {
 			}
 		}
 	}
-
 }

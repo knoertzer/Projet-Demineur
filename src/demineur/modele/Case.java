@@ -6,7 +6,7 @@ public abstract class Case {
 
 	private int posX;
 	private int posY;
-	public final ImageIcon flag = new ImageIcon ("C:\\Users\\Xantho\\Documents\\INFORMATIQUE\\JAVA\\Demineur\\flag.png");
+	public final ImageIcon flag = new ImageIcon ("D:\\IUT\\Java\\Alternance\\Demineur\\flag.png");
 	private boolean isFlag;
 	private boolean decouverte;
 	
