@@ -9,10 +9,11 @@ public class ModeleDemineur {
 
 	
 	private Case [][] _tabCases;
-	public VueDemineur _vueDem;
+	private int _nbColonnes, _nbLignes, _nbBombes;
 	private boolean _partieTermine;
 	private int DrapBienPose ;
 	private int NbCaseDecouverte ;
+	public VueDemineur _vueDem;
 
 	/***
 	 * @param args
@@ -33,6 +34,9 @@ public class ModeleDemineur {
 		
 		_tabCases = new Case[ligne][colonne];
 		//this._vueDem = vueDem;
+		set_nbColonnes(colonne);
+		set_nbLignes(ligne);
+		set_nbBombes(bombe);
 		this._partieTermine = false;
 		
 		//on génère la grille
@@ -70,8 +74,8 @@ public class ModeleDemineur {
 		int i=0,x,y;
 		while (i < nbBombes) 
 		{
-			x = generator.nextInt(_vueDem.getNbColonnes());
-			y = generator.nextInt(_vueDem.getNbLignes());
+			x = generator.nextInt(get_nbColonnes());
+			y = generator.nextInt(get_nbLignes());
 			if (_tabCases[x][y] == null)
 			{
 				_tabCases[x][y] = new CaseBombe(x, y);
@@ -265,19 +269,19 @@ public class ModeleDemineur {
 	public String score()
 	{
 		int resultat;
-		resultat = (_vueDem.getNbBombes() * _vueDem.getNbColonnes()*  _vueDem.getNbColonnes())/ _vueDem.getCompteur();
+		resultat = (get_nbBombes() * get_nbColonnes()*  get_nbColonnes())/ _vueDem.getCompteur();
 		return Integer.toString(resultat);
 	}
 	
 	public void AfficherBombes ()
 	{
-		for (int lig = 0 ; lig < _vueDem.getNbLignes() ; lig ++)
+		for (int lig = 0 ; lig < get_nbLignes() ; lig ++)
 		{
-			for (int col = 0 ; col < _vueDem.getNbColonnes() ; col ++)
+			for (int col = 0 ; col < get_nbColonnes() ; col ++)
 			{
 				if (!_tabCases[lig][col].isDecouverte())
 				{
-					JButton btn = (JButton) _vueDem.pnlGrille.getComponent(lig* _vueDem.getNbColonnes()+col);
+					JButton btn = (JButton) _vueDem.pnlGrille.getComponent(lig* get_nbColonnes()+col);
 					if (EstBombe(lig,col))
 						btn.setIcon(CaseBombe.getBombe());
 					else
@@ -287,7 +291,6 @@ public class ModeleDemineur {
 			}
 		}
 	}
-<<<<<<< HEAD
 	
 	/*public boolean CasesIndicesDecouvertent ()
 	{
@@ -315,8 +318,31 @@ public class ModeleDemineur {
 	public void setNbCaseDecouverte(int inc) {
 		NbCaseDecouverte += inc;
 	}
+
+	public void set_nbColonnes(int _nbColonnes) {
+		this._nbColonnes = _nbColonnes;
+	}
+
+	public int get_nbColonnes() {
+		return _nbColonnes;
+	}
+
+	public void set_nbLignes(int _nbLignes) {
+		this._nbLignes = _nbLignes;
+	}
+
+	public int get_nbLignes() {
+		return _nbLignes;
+	}
+
+	public void set_nbBombes(int _nbBombes) {
+		this._nbBombes = _nbBombes;
+	}
+
+	public int get_nbBombes() {
+		return _nbBombes;
+	}
 		
 
-=======
->>>>>>> 740bfcfd1aed5270169edd959158b538598facca
+
 }
