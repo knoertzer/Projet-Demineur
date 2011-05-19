@@ -2,6 +2,7 @@ package demineur.vue;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -37,11 +38,12 @@ public class VueDemineur extends JFrame{
 	private javax.swing.Timer timer ;
 	//private demineur.options.Timer timer ;
 	
-	private static JLabel lblCptDrap  = new JLabel();
+	private static JTextField lblCptDrap  = new JTextField();
+	
 	public JButton btnRejouer = new JButton();
 	private ImageIcon pika = new ImageIcon("./pok.gif");
 	private ImageIcon deadPika = new ImageIcon("./deadPika.png");
-	public static JLabel lblTemps  = new JLabel();
+	public static JTextField lblTemps  = new JTextField();
 	
 	public JMenuBar menu = new JMenuBar();
 	public JMenu mnuPartie = new JMenu("Partie");
@@ -75,14 +77,13 @@ public class VueDemineur extends JFrame{
 	    //pnlOption.add(menu);
 	    
 	    pnlPartie.setLayout(new BorderLayout());
-	    pnlPartie.setBackground(Color.BLACK);
 	    
 	    pnlJeux.setLayout(new BorderLayout());
-	    pnlJeux.setBackground(Color.RED);
 	    
 	    //pnlInfo.setSize(700, 100);
-	    pnlInfo.setBackground(Color.GREEN);
 	    pnlInfo.setLayout(new GridLayout(1,3));
+	    lblCptDrap.setHorizontalAlignment(JTextField.CENTER);
+	    lblCptDrap.setFont(new Font ("Pokemon Hollow", Font.BOLD, 30));
 	    pnlInfo.add(lblCptDrap);
 	    pnlInfo.add(btnRejouer);
 	    
@@ -91,7 +92,6 @@ public class VueDemineur extends JFrame{
 	    pnlJeux.add("North",pnlInfo);
 	    
 	    //pnlGrille.setSize(20, 20);
-	    pnlGrille.setBackground(Color.BLUE);
 	    
 	    RemplirGrille(nbLignes,nbColonnes,nbBombes);
 	    
@@ -142,6 +142,8 @@ public class VueDemineur extends JFrame{
 	          public void actionPerformed(ActionEvent e) 
 	          {
 	      	    lblTemps.setText(String.valueOf(compteur));
+	      	    lblTemps.setHorizontalAlignment(JTextField.CENTER);
+	      	    lblTemps.setFont(new Font ("Pokemon Hollow", Font.BOLD, 30));
 	      	    compteur++;
 	      	    lblCptDrap.setText(Integer.toString(nbDrap));
 	          }
@@ -198,7 +200,7 @@ public class VueDemineur extends JFrame{
 	public void setNbDrap(int nbDrap) {
 		this.nbDrap = nbDrap;
 	}
-	public JLabel getLblCptDrap() {
+	public JTextField getLblCptDrap() {
 		return lblCptDrap;
 	}
 
