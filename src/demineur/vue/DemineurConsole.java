@@ -13,6 +13,9 @@ public class DemineurConsole {
 	private ModeleDemineur modeleDem;
 
 	public DemineurConsole() {
+		String reponse;
+		int lig,col,opt;
+		
 		System.out.println("Demineur version console");
 		System.out.println("Veuillez saisir une nombre de colonnes : 10");
 		//setNbColonnes(Console.lireInt());
@@ -25,28 +28,59 @@ public class DemineurConsole {
 		System.out.println("La partie commence");
 		while(!isTermine())
 		{
-			int i,j;
+
+			//Jouer
 			System.out.println("Veuillez saisir une ligne :");
-			i=Console.lireInt();
+			lig=Console.lireInt();
 			System.out.println("Veuillez saisir une colonne :");
-			j=Console.lireInt();
+			col=Console.lireInt();
+			System.out.println("Voulez-vous :\n 1 - Planter un drapeau\n 2 - Appuyer sur la case\n 3 - Annuler la saisie");
+			opt=Console.lireInt();
 			
-			getModeleDem().ZeroDiscover(j, i, getNbLignes(), getNbColonnes());
-			if (getModeleDem().EstBombe(j, i))
-			{
-				setTermine(true);
-				System.out.println("ZETES 1 LOOOOOOOOOOOSER !!");				
+			//gestion des options
+			switch(opt){
+			case 1:
+				System.out.println("Plantage de drapeau en cours");
+				getModeleDem().get_tabCases(col, lig).setFlag(true);
+				break;
+			case 2:
+				System.out.println("Decouverte en cours");
+				if (getModeleDem().EstBombe(col, lig))
+				{
+					setTermine(true);
+					System.out.println("ZETES 1 LOOOOOOOOOOOSER !!");				
+				}
+				else getModeleDem().ZeroDiscover(col, lig, getNbLignes(), getNbColonnes());
+				break;
+			case 3:
+				System.out.println("Annulation");
+				break;
+			default:
+				System.out.println("Option non-reconnue");
+				break;
 			}
+			
+			//Vérif
+
 			majGrille();
 			getModeleDem().verifGagne();
 		}
+		System.out.println("Souhaitez-vous rejouer ? (y/n)");
+		reponse=Console.lireString();
 		
+		if (reponse == "y"){
+			
+		}
 	}
 	
 
 	private void majGrille() {
-		for (int i = 0; i < getNbColonnes(); i++) {
-			for (int j = 0; j < getNbLignes(); j++) {
+		System.out.print("   ");
+		for (int i=0;i<getNbColonnes();i++)System.out.print("["+i+"]");
+		System.out.println("");
+		for (int i = 0; i < getNbLignes(); i++) {
+			System.out.print("["+i+"]");
+			for (int j = 0; j < getNbColonnes(); j++) {
 				if(isTermine() && modeleDem.EstBombe(j, i))
 				{
 					System.out.print("[X]");

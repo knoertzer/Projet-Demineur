@@ -299,10 +299,18 @@ public class ModeleDemineur {
 		}
 	}
 	public boolean verifGagne() {
+<<<<<<< HEAD
 		//boolean rep=true;
 		//if (getDrapPose()<0) rep = false;
 		//if (getDrapBienPose() get_nbBombes())
 		return true;//rep;
+=======
+		boolean rep=false;
+		if ((getDrapBienPose()+ getDrapPose()) == 2*get_nbBombes()) rep = true;
+		if ((getNbCaseDecouverte() + get_nbBombes()) == (get_nbColonnes()*get_nbLignes())) rep = true;
+		
+		return rep;
+>>>>>>> e636b6e1043eb78f9c745b98f1576dc78bd8277e
 	}
 	
 	
