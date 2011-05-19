@@ -247,11 +247,14 @@ public class ModeleDemineur {
 	{
 		//JButton btn = (JButton) _vueDem.pnlGrille.getComponent(lig*nbCol+col);
 		//btn.setText(Integer.toString(_tabCases[lig][col].getIndice()));
-		ZeroDiscover(lig,col,nbLig, nbCol);
-		if (!_tabCases[lig][col].isDecouverte())
+		if (!_tabCases[lig][col].isFlag())
 		{
-			_tabCases[lig][col].setDecouverte(true);
-			NbCaseDecouverte++;
+			ZeroDiscover(lig,col,nbLig, nbCol);
+			if (!_tabCases[lig][col].isDecouverte())
+			{
+				_tabCases[lig][col].setDecouverte(true);
+				NbCaseDecouverte++;
+			}
 		}
 	}
 	
@@ -259,10 +262,13 @@ public class ModeleDemineur {
 	{
 		//JButton btn = (JButton) _vueDem.pnlGrille.getComponent(lig*nbCol+col);
 		//btn.setText(Integer.toString(_tabCases[lig][col].getIndice()));
-		if (!_tabCases[lig][col].isDecouverte())
+		if (!_tabCases[lig][col].isFlag())
 		{
-			_tabCases[lig][col].setDecouverte(true);
-			NbCaseDecouverte++;
+			if (!_tabCases[lig][col].isDecouverte())
+			{
+				_tabCases[lig][col].setDecouverte(true);
+				NbCaseDecouverte++;
+			}
 		}
 	}
 	
