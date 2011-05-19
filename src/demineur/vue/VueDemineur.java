@@ -1,7 +1,6 @@
 package demineur.vue;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -133,7 +132,7 @@ public class VueDemineur extends JFrame{
 				
 			}
 		}
-        //System.out.println("le control " + pnlGrille.getComponent(0).getName());
+        System.out.println("le control " + pnlGrille.getComponent(0).getName());
 	}
 	
 	public void LancementTimer()
@@ -159,6 +158,8 @@ public class VueDemineur extends JFrame{
 	public void RestartTimer()
 	{
 		timer.restart();
+		compteur = 0;
+		lblTemps.setText(String.valueOf(compteur));
 	}
 	
 	
