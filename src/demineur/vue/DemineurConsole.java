@@ -9,6 +9,7 @@ public class DemineurConsole {
 	private int nbLignes = 10;
 	private int nbBombes = 10;
 	private int nbDrap = 10;
+	private boolean termine=false;
 	private ModeleDemineur modeleDem;
 
 	public DemineurConsole() {
@@ -22,9 +23,43 @@ public class DemineurConsole {
 		setModeleDem(new ModeleDemineur(getNbColonnes(), getNbLignes(),
 				getNbBombes()));
 		System.out.println("La partie commence");
-		afficherGrille();
+		while(!isTermine())
+		{
+			int i,j;
+			System.out.println("Veuillez saisir une colonnes :");
+			i=Console.lireInt();
+			System.out.println("Veuillez saisir une colonnes :");
+			j=Console.lireInt();
+			
+			majGrille();
+			if (getModeleDem().EstBombe(i, j))
+			{
+				setTermine(true);
+				System.out.println("ZAVEZ PERDU !!");				
+			}
+			getModeleDem().verifGagne();
+		}
+		
 	}
 	
+
+	private void majGrille() {
+		for (int i = 0; i < getNbColonnes(); i++) {
+			for (int j = 0; j < getNbLignes(); j++) {
+				if (modeleDem.get_tabCases(i, j).isDecouverte())
+				{
+					System.out.println("["+modeleDem.get_tabCases(i, j).getIndice()+"]");
+				}
+				else if (modeleDem.get_tabCases(i, j).isFlag())
+				{
+					System.out.println("[F]");
+				}
+				else System.out.println("[ ]");
+			}
+		}
+		
+	}
+
 	public static void main(String[] args) {
 
 
@@ -85,6 +120,14 @@ public class DemineurConsole {
 
 	public ModeleDemineur getModeleDem() {
 		return modeleDem;
+	}
+
+	public void setTermine(boolean Termine) {
+		this.termine = Termine;
+	}
+
+	public boolean isTermine() {
+		return termine;
 	}
 
 }

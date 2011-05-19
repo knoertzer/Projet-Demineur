@@ -11,7 +11,7 @@ public class ModeleDemineur {
 	private Case [][] _tabCases;
 	private int _nbColonnes, _nbLignes, _nbBombes;
 	private boolean _partieTermine;
-	private int DrapBienPose ;
+	private int DrapPose, DrapBienPose;
 	private int NbCaseDecouverte ;
 	public VueDemineur _vueDem;
 
@@ -291,6 +291,12 @@ public class ModeleDemineur {
 			}
 		}
 	}
+	public boolean verifGagne() {
+		
+		return _partieTermine;
+	}
+	
+	
 	
 	/*public boolean CasesIndicesDecouvertent ()
 	{
@@ -342,7 +348,13 @@ public class ModeleDemineur {
 	public int get_nbBombes() {
 		return _nbBombes;
 	}
-		
 
+	public void setDrapPose(int drapPose) {
+		DrapPose = drapPose;
+	}
+
+	public int getDrapPose() {
+		return DrapPose;
+	}
 
 }
