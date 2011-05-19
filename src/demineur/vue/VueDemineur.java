@@ -39,8 +39,8 @@ public class VueDemineur extends JFrame{
 	
 	private static JLabel lblCptDrap  = new JLabel();
 	public JButton btnRejouer = new JButton();
-	private ImageIcon pika = new ImageIcon("C:\\Users\\Xantho\\Documents\\INFORMATIQUE\\JAVA\\Demineur\\pok.gif");
-	private ImageIcon deadPika = new ImageIcon("C:\\Users\\Xantho\\Documents\\INFORMATIQUE\\JAVA\\Demineur\\deadPika.png");
+	private ImageIcon pika = new ImageIcon("./pok.gif");
+	private ImageIcon deadPika = new ImageIcon("./deadPika.png");
 	public static JLabel lblTemps  = new JLabel();
 	
 	public JMenuBar menu = new JMenuBar();

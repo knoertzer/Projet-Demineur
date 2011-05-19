@@ -4,7 +4,7 @@ import javax.swing.ImageIcon;
 
 public class CaseBombe extends Case {
 
-	public final static ImageIcon bombe = new ImageIcon ("D:\\IUT\\Java\\Alternance\\Demineur\\bombe2.png"); 
+	public final static ImageIcon bombe = new ImageIcon ("./bombe2.png"); 
 	
 	public CaseBombe(int posX, int posY) {
 		super(posX, posY);
