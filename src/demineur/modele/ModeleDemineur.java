@@ -25,7 +25,7 @@ public class ModeleDemineur {
 		this._vueDem = vueDem;
 		this._partieTermine = false;
 		this.NbCaseDecouverte = vueDem.getNbBombes();
-
+		this.DrapPose=0;
 	}
 	
 	public ModeleDemineur(int colonne, int ligne, int bombe){
@@ -37,6 +37,7 @@ public class ModeleDemineur {
 		set_nbColonnes(colonne);
 		set_nbLignes(ligne);
 		set_nbBombes(bombe);
+		setDrapPose(0);
 		this._partieTermine = false;
 		
 		//on génère la grille
@@ -298,8 +299,10 @@ public class ModeleDemineur {
 		}
 	}
 	public boolean verifGagne() {
-		
-		return _partieTermine;
+		boolean rep=true;
+		if (getDrapPose()<0) rep = false;
+		if (getDrapBienPose() get_nbBombes())
+		return rep;
 	}
 	
 	

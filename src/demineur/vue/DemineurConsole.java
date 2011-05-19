@@ -26,17 +26,18 @@ public class DemineurConsole {
 		while(!isTermine())
 		{
 			int i,j;
-			System.out.println("Veuillez saisir une colonnes :");
+			System.out.println("Veuillez saisir une ligne :");
 			i=Console.lireInt();
-			System.out.println("Veuillez saisir une colonnes :");
+			System.out.println("Veuillez saisir une colonne :");
 			j=Console.lireInt();
 			
-			majGrille();
-			if (getModeleDem().EstBombe(i, j))
+			getModeleDem().ZeroDiscover(j, i, getNbLignes(), getNbColonnes());
+			if (getModeleDem().EstBombe(j, i))
 			{
 				setTermine(true);
-				System.out.println("ZAVEZ PERDU !!");				
+				System.out.println("ZETES 1 LOOOOOOOOOOOSER !!");				
 			}
+			majGrille();
 			getModeleDem().verifGagne();
 		}
 		
@@ -46,18 +47,22 @@ public class DemineurConsole {
 	private void majGrille() {
 		for (int i = 0; i < getNbColonnes(); i++) {
 			for (int j = 0; j < getNbLignes(); j++) {
-				if (modeleDem.get_tabCases(i, j).isDecouverte())
+				if(isTermine() && modeleDem.EstBombe(j, i))
 				{
-					System.out.println("["+modeleDem.get_tabCases(i, j).getIndice()+"]");
+					System.out.print("[X]");
 				}
-				else if (modeleDem.get_tabCases(i, j).isFlag())
+				else if (modeleDem.get_tabCases(j, i).isDecouverte())
 				{
-					System.out.println("[F]");
+					System.out.print("["+modeleDem.get_tabCases(j, i).getIndice()+"]");
 				}
-				else System.out.println("[ ]");
+				else if (modeleDem.get_tabCases(j, i).isFlag())
+				{
+					System.out.print("[F]");
+				}
+				else System.out.print("[ ]");
 			}
+			System.out.println("");
 		}
-		
 	}
 
 	public static void main(String[] args) {
