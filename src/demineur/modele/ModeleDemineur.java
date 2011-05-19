@@ -68,14 +68,14 @@ public class ModeleDemineur {
 		DrapBienPose += inc;
 	}
 	
-	public void AjouterBombes (int nbBombes)
+	public void AjouterBombes (int nbBombes, int nbCol, int nbLig)
 	{
 		Random generator = new Random();
 		int i=0,x,y;
 		while (i < nbBombes) 
 		{
-			x = generator.nextInt(get_nbColonnes());
-			y = generator.nextInt(get_nbLignes());
+			x = generator.nextInt(nbCol);
+			y = generator.nextInt(nbLig);
 			if (_tabCases[x][y] == null)
 			{
 				_tabCases[x][y] = new CaseBombe(x, y);
@@ -87,7 +87,7 @@ public class ModeleDemineur {
 	
 	public void GenererGrille (int nbCol, int nbLig , int nbBombes)
 	{
-		AjouterBombes(nbBombes);
+		AjouterBombes(nbBombes,nbCol,nbLig);
 		for (int i=0 ; i < nbLig ; i++)
 		{
 			for (int j = 0 ; j < nbCol ; j++)
@@ -164,7 +164,7 @@ public class ModeleDemineur {
 		return (_tabCases[lig][col] instanceof CaseBombe);
 	}
 	
-	public void ZeroDiscover (int lig, int col,int nbLig,int nbCol,JButton leBtn)
+	public void ZeroDiscover (int lig, int col,int nbLig,int nbCol)
 	{
 		if (!_tabCases[lig][col].isDecouverte())
 		{
@@ -179,7 +179,7 @@ public class ModeleDemineur {
 					if (_tabCases[lig-1][col-1].getIndice() == 0)
 						DiscoverOne ( lig-1 , col-1 , nbLig , nbCol);
 					else if (!EstBombe(lig-1,col-1))
-						DiscoverOneIndice( lig-1 , col-1 , nbLig , nbCol);	
+						DiscoverOneIndice( lig-1 , col-1);	
 				}
 				//et si bord bas
 				if (lig+1 <= nbLig-1)
@@ -187,14 +187,14 @@ public class ModeleDemineur {
 					if (_tabCases[lig+1][col-1].getIndice() == 0)
 						DiscoverOne ( lig+1 , col-1 , nbLig , nbCol);
 					else if (!EstBombe(lig+1,col-1))
-						DiscoverOneIndice( lig+1 , col-1 , nbLig , nbCol);
+						DiscoverOneIndice( lig+1 , col-1);
 				}
 				//et milieu
 
 				if (_tabCases[lig][col-1].getIndice() == 0)
 					DiscoverOne ( lig , col-1 , nbLig , nbCol);
 				else if (!EstBombe(lig,col-1))
-					DiscoverOneIndice( lig , col-1 , nbLig , nbCol);
+					DiscoverOneIndice( lig , col-1);
 			}
 			//Si bord droit
 			if ( col+1 <= nbCol-1)
@@ -205,7 +205,7 @@ public class ModeleDemineur {
 					if (_tabCases[lig-1][col+1].getIndice() == 0)
 						DiscoverOne ( lig-1 , col+1 , nbLig , nbCol);
 					else if (!EstBombe(lig-1,col+1))
-						DiscoverOneIndice( lig-1 , col+1 , nbLig , nbCol);
+						DiscoverOneIndice( lig-1 , col+1);
 				}
 				//et si bord bas
 				if (lig+1 <= nbLig-1)
@@ -213,14 +213,14 @@ public class ModeleDemineur {
 					if (_tabCases[lig+1][col+1].getIndice() == 0)
 						DiscoverOne ( lig+1 , col+1 , nbLig , nbCol);
 					else if (!EstBombe(lig+1,col+1))
-						DiscoverOneIndice( lig+1 , col+1 , nbLig , nbCol);
+						DiscoverOneIndice( lig+1 , col+1);
 				}
 				
 				//et milieu
 				if (_tabCases[lig][col+1].getIndice() == 0)
 					DiscoverOne( lig , col+1 , nbLig , nbCol);
 				else if (!EstBombe(lig,col+1))
-					DiscoverOneIndice ( lig , col+1 , nbLig , nbCol);
+					DiscoverOneIndice ( lig , col+1);
 			}
 			
 			//si Bord haut milieu
@@ -229,7 +229,7 @@ public class ModeleDemineur {
 				if (_tabCases[lig-1][col].getIndice() == 0)
 					DiscoverOne ( lig-1 , col , nbLig , nbCol);
 				else if (!EstBombe(lig-1,col))
-					DiscoverOneIndice( lig-1 , col , nbLig , nbCol);
+					DiscoverOneIndice( lig-1 , col);
 			}
 			
 			//si Bord bas milieu
@@ -238,16 +238,16 @@ public class ModeleDemineur {
 				if (_tabCases[lig+1][col].getIndice() == 0)
 					DiscoverOne ( lig+1 , col , nbLig , nbCol);
 				else if (!EstBombe(lig+1,col))
-					DiscoverOneIndice( lig+1 , col , nbLig , nbCol);
+					DiscoverOneIndice( lig+1 , col);
 			}
 		}
 	}
 	
 	public void DiscoverOne (int lig , int col , int nbLig , int nbCol )
 	{
-		JButton btn = (JButton) _vueDem.pnlGrille.getComponent(lig*nbCol+col);
-		btn.setText(Integer.toString(_tabCases[lig][col].getIndice()));
-		ZeroDiscover(lig,col,nbLig, nbCol,btn);
+		//JButton btn = (JButton) _vueDem.pnlGrille.getComponent(lig*nbCol+col);
+		//btn.setText(Integer.toString(_tabCases[lig][col].getIndice()));
+		ZeroDiscover(lig,col,nbLig, nbCol);
 		if (!_tabCases[lig][col].isDecouverte())
 		{
 			_tabCases[lig][col].setDecouverte(true);
@@ -255,10 +255,10 @@ public class ModeleDemineur {
 		}
 	}
 	
-	public void DiscoverOneIndice (int lig , int col , int nbLig , int nbCol )
+	public void DiscoverOneIndice (int lig , int col)
 	{
-		JButton btn = (JButton) _vueDem.pnlGrille.getComponent(lig*nbCol+col);
-		btn.setText(Integer.toString(_tabCases[lig][col].getIndice()));
+		//JButton btn = (JButton) _vueDem.pnlGrille.getComponent(lig*nbCol+col);
+		//btn.setText(Integer.toString(_tabCases[lig][col].getIndice()));
 		if (!_tabCases[lig][col].isDecouverte())
 		{
 			_tabCases[lig][col].setDecouverte(true);
