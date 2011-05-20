@@ -1,6 +1,6 @@
 package defaut;
 
-import demineur.vue.VueDemineur;
+import demineur.vue.VueChoix;
 
 
 
@@ -12,7 +12,7 @@ public class lancement {
 	public static void main(String[] args) {
 
 
-		VueDemineur fenetre = new VueDemineur();
+		VueChoix fenetre = new VueChoix ();
 		
 	}
 }
