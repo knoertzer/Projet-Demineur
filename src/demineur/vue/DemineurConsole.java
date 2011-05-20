@@ -1,5 +1,8 @@
 package demineur.vue;
 
+import java.util.Calendar;
+import java.util.Date;
+
 import demineur.modele.ModeleDemineur;
 import demineur.options.Console;
 
@@ -37,6 +40,9 @@ public class DemineurConsole {
 
 			System.out.println("La partie commence");
 			
+			//début de la partie
+			Date start = new java.sql.Timestamp(Calendar.getInstance().getTime().getTime());
+
 			while (!isTermine()) {
 
 				// Jouer
@@ -74,8 +80,12 @@ public class DemineurConsole {
 				// Vérif
 				majGrille();
 				if (getModeleDem().verifGagne()){
-					System.out.println("Vous avez gagné !!");
+					
+					Date end = new java.sql.Timestamp(Calendar.getInstance().getTime().getTime());
+					long difference = end.getTime()-start.getTime();
+					System.out.println("Vous avez gagné !!\nScore :"+getModeleDem().score(difference));
 					setTermine(true);
+					
 				}
 			}
 			System.out.println("Souhaitez-vous rejouer ? (y/n)");
@@ -122,6 +132,7 @@ public class DemineurConsole {
 
 	}
 
+/*
 	private void afficherGrille() {
 		for (int i = 0; i < getNbLignes(); i++) {
 			for (int j = 0; j < getNbColonnes(); j++) {
@@ -134,9 +145,9 @@ public class DemineurConsole {
 			}
 			System.out.println("");
 		}
-
 	}
-
+*/
+	
 	public void setNbColonnes(int nbColonnes) {
 		this.nbColonnes = nbColonnes;
 	}

@@ -273,12 +273,13 @@ public class ModeleDemineur {
 		}
 	}
 	
-	public String score()
+	public String score(long temps)
 	{
-		int resultat;
-		resultat = (get_nbBombes() * get_nbColonnes()*  get_nbColonnes())/ _vueDem.getCompteur();
-		return Integer.toString(resultat);
+		double resultat;
+		resultat = (get_nbBombes() * get_nbColonnes() * get_nbColonnes())/(temps/10000);
+		return Double.toString(resultat);
 	}
+
 	
 	public void AfficherBombes ()
 	{
@@ -373,5 +374,7 @@ public class ModeleDemineur {
 	public int getDrapPose() {
 		return DrapPose;
 	}
+
+
 
 }
