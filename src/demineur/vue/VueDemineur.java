@@ -115,7 +115,7 @@ public class VueDemineur extends JFrame{
 		
 		pnlGrille.setLayout(new GridLayout(nbLignes,nbColonnes));
 		
-		modeleDem = new ModeleDemineur(this);
+		modeleDem = new ModeleDemineur(nbCol,nbLig,nbBom);
 		modeleDem.GenererGrille(nbCol,nbLig,nbBom);
 		
 		for (int i = 0 ; i < nbLig ; i++)

@@ -16,6 +16,8 @@ import javax.swing.JTextField;
 @SuppressWarnings("serial")
 public class VueScore extends JFrame{
 
+	
+	private int score;
 	private JPanel pnlResultatNorth;
 	private JPanel pnlResultatCenter;
 	private JPanel pnlResultatSouth;
@@ -25,7 +27,11 @@ public class VueScore extends JFrame{
 	private JTextField nom;
 	private JButton btnValider;
 	
-	public VueScore() {
+	public VueScore(int score) {
+		
+		
+		this.score = score;
+		
 	    //Définit un titre pour votre fenêtre
 	    setTitle("Votre choix!");
 	    //Définit une taille pour celle-ci ; ici, 500 px de large et 500 px de haut
@@ -50,7 +56,7 @@ public class VueScore extends JFrame{
 		message = new JLabel("Vous avez gagné, Félicitation !!!! \n \n");
 	    message.setFont(maFont);
 	    message.setHorizontalAlignment(JTextField.CENTER);
-		infoScore = new JLabel ("Votre score est : " + " 30 ");
+		infoScore = new JLabel ("Votre score est : " + this.score);
 		infoScore.setFont(maFont);
 		infoScore.setHorizontalAlignment(JTextField.CENTER);
 		pnlResultatNorth.add(message);
@@ -87,7 +93,7 @@ public class VueScore extends JFrame{
 	
 	public static void main (String[] args)
 	{
-		VueScore vue = new VueScore();
+		VueScore vue = new VueScore(30);
 	}
 
 }

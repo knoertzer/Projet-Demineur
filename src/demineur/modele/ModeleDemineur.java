@@ -37,6 +37,7 @@ public class ModeleDemineur {
 		set_nbColonnes(colonne);
 		set_nbLignes(ligne);
 		set_nbBombes(bombe);
+		NbCaseDecouverte = bombe;
 		setDrapPose(0);
 		this._partieTermine = false;
 		

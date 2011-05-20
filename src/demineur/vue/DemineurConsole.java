@@ -132,10 +132,10 @@ public class DemineurConsole {
 
 	}*/
 
-<<<<<<< HEAD
+
 /*
 	private void afficherGrille() {
-=======
+
 	/*private void afficherGrille() 
 	{
 >>>>>>> 6cee581408f160c6faee261b55097e7170818f87
@@ -153,12 +153,8 @@ public class DemineurConsole {
 <<<<<<< HEAD
 	}
 */
-	
-=======
 
-	}*/
 
->>>>>>> 6cee581408f160c6faee261b55097e7170818f87
 	public void setNbColonnes(int nbColonnes) {
 		this.nbColonnes = nbColonnes;
 	}
