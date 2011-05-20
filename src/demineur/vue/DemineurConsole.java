@@ -116,13 +116,14 @@ public class DemineurConsole {
 		}
 	}
 
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 
 		DemineurConsole fenetre = new DemineurConsole();
 
-	}
+	}*/
 
-	private void afficherGrille() {
+	/*private void afficherGrille() 
+	{
 		for (int i = 0; i < getNbLignes(); i++) {
 			for (int j = 0; j < getNbColonnes(); j++) {
 				if (getModeleDem().EstBombe(i, j))
@@ -135,7 +136,7 @@ public class DemineurConsole {
 			System.out.println("");
 		}
 
-	}
+	}*/
 
 	public void setNbColonnes(int nbColonnes) {
 		this.nbColonnes = nbColonnes;
