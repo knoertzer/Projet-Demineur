@@ -53,9 +53,7 @@ public class ControleurCase implements MouseListener {
 					MajVue();
 
 					// SI win
-					if (_modele.getDrapBienPose() == _vue.getNbBombes()
-							&& _modele.getNbCaseDecouverte() == (_vue
-									.getNbColonnes() * _vue.getNbLignes()) - 1) 
+					if (_modele.verifGagne()) 
 					{
 						_vue.StoperTimer();
 						JOptionPane.showMessageDialog(null,
@@ -84,17 +82,6 @@ public class ControleurCase implements MouseListener {
 						_vue.setNbDrap(_vue.getNbDrap() - 1);
 						_vue.setLblCptDrap(Integer.toString((_vue.getNbDrap())));
 	
-						// SI win
-						if (_modele.getDrapBienPose() == _vue.getNbBombes()
-								&& _modele.getNbCaseDecouverte() == _vue
-										.getNbColonnes() * _vue.getNbLignes()) 
-						{
-							_vue.StoperTimer();
-							JOptionPane.showMessageDialog(null,
-									"Vous avez gagné ! \n votre score est : "
-											+ _modele.score((long)_vue.getTimer().getDelay()), "Gagné",
-									JOptionPane.INFORMATION_MESSAGE);
-						}
 					} 
 					else 
 					{
