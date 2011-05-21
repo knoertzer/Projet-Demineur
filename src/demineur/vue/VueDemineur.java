@@ -42,7 +42,7 @@ public class VueDemineur extends JFrame{
 	public JButton btnRejouer = new JButton();
 	private ImageIcon pika = new ImageIcon("./pok.gif");
 	private ImageIcon deadPika = new ImageIcon("./deadPika.png");
-	public static JTextField lblTemps  = new JTextField();
+	public JTextField lblTemps  = new JTextField();
 	
 	public JMenuBar menu = new JMenuBar();
 	public JMenu mnuPartie = new JMenu("Partie");
@@ -116,7 +116,7 @@ public class VueDemineur extends JFrame{
 		pnlGrille.setLayout(new GridLayout(nbLignes,nbColonnes));
 		
 		modeleDem = new ModeleDemineur(nbCol,nbLig,nbBom);
-		modeleDem.GenererGrille(nbCol,nbLig,nbBom);
+		//modeleDem.GenererGrille(nbCol,nbLig,nbBom);
 		
 		for (int i = 0 ; i < nbLig ; i++)
 		{
