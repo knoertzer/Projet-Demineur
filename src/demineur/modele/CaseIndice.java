@@ -16,7 +16,6 @@ public class CaseIndice extends Case {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 
 	}
 
@@ -30,7 +29,6 @@ public class CaseIndice extends Case {
 
 	@Override
 	public ImageIcon getImage() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
