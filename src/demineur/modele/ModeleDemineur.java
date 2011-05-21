@@ -309,7 +309,7 @@ public class ModeleDemineur {
 
 		boolean rep=false;
 		if ((getDrapBienPose()+ getDrapPose()) == 2*get_nbBombes()) rep = true;
-		if ((getNbCaseDecouverte() + get_nbBombes()) == (get_nbColonnes()*get_nbLignes())) rep = true;
+		if ((getNbCaseDecouverte()) == (get_nbColonnes()*get_nbLignes())) rep = true;
 		
 		return rep;
 

@@ -1,13 +1,13 @@
 package demineur.vue;
 
-import javax.swing.JFrame;
+import java.awt.Font;
+import java.awt.GridLayout;
+
+import javax.swing.*;
 
 @SuppressWarnings("serial")
-public class VueScore extends JFrame{
-
-<<<<<<< HEAD
-	public VueScore() {
-=======
+public class VueScore extends JFrame
+{
 	
 	private int score;
 	private JPanel pnlResultatNorth;
@@ -24,12 +24,12 @@ public class VueScore extends JFrame{
 		
 		this.score = score;
 		
->>>>>>> 859840a65dd0da21a97239cdc5cd8ef561363385
+
 	    //Définit un titre pour votre fenêtre
 	    setTitle("Votre choix!");
 	    //Définit une taille pour celle-ci ; ici, 500 px de large et 500 px de haut
 	    
-	    setSize(600,600);
+	    setSize(600,200);
 	    //Nous allons maintenant dire à notre objet de se positionner au centre
 	    setLocationRelativeTo(null);
 	    //Terminer le processus lorsqu'on clique sur "Fermer"
@@ -39,16 +39,14 @@ public class VueScore extends JFrame{
 	    //Permet a la fenetre d'etre toujours au premier plan
 	    setAlwaysOnTop(true);
 	    
-	    
-<<<<<<< HEAD
+
 	    
 	    setVisible(true);
-	}
-=======
+	
 	    pnlResultatNorth = new JPanel();
 	    pnlResultatNorth.setLayout(new GridLayout(3,1));
 		message = new JLabel("Vous avez gagné, Félicitation !!!! \n \n");
-	    message.setFont(maFont);
+	    Font maFont = new Font ("Arial" ,Font.BOLD, 30) ;
 	    message.setHorizontalAlignment(JTextField.CENTER);
 		infoScore = new JLabel ("Votre score est : " + this.score);
 		infoScore.setFont(maFont);
@@ -89,6 +87,5 @@ public class VueScore extends JFrame{
 	{
 		VueScore vue = new VueScore(30);
 	}
->>>>>>> 859840a65dd0da21a97239cdc5cd8ef561363385
 
 }

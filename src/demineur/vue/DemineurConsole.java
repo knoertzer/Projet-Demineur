@@ -132,18 +132,14 @@ public class DemineurConsole {
 
 	}*/
 
-<<<<<<< HEAD
-/*
-	private void afficherGrille() {
-=======
+
 
 /*
 	private void afficherGrille() {
 
 	/*private void afficherGrille() 
 	{
->>>>>>> 6cee581408f160c6faee261b55097e7170818f87
->>>>>>> 859840a65dd0da21a97239cdc5cd8ef561363385
+
 		for (int i = 0; i < getNbLignes(); i++) {
 			for (int j = 0; j < getNbColonnes(); j++) {
 				if (getModeleDem().EstBombe(i, j))
@@ -156,11 +152,7 @@ public class DemineurConsole {
 			System.out.println("");
 		}
 */
-<<<<<<< HEAD
-=======
 
-
->>>>>>> 859840a65dd0da21a97239cdc5cd8ef561363385
 	public void setNbColonnes(int nbColonnes) {
 		this.nbColonnes = nbColonnes;
 	}

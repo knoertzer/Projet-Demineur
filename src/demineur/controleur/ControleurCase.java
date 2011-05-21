@@ -9,6 +9,7 @@ import javax.swing.JOptionPane;
 import demineur.modele.Case;
 import demineur.modele.ModeleDemineur;
 import demineur.vue.VueDemineur;
+import demineur.vue.VueScore;
 
 public class ControleurCase implements MouseListener {
 	public Case _case;
@@ -52,20 +53,17 @@ public class ControleurCase implements MouseListener {
 					_btnCase.setText(Integer.toString(_case.getIndice()));
 					MajVue();
 
-					// SI win
-					if (_modele.verifGagne()) 
-					{
-						_vue.StoperTimer();
-						JOptionPane.showMessageDialog(null,
-								"Vous avez gagné ! \n votre score est : "
-										+ _modele.score((long)_vue.getTimer().getDelay()), "Gagné",
-								JOptionPane.INFORMATION_MESSAGE);
-					}
-
 				}
 				if (!_case.isDecouverte()) {
 					_case.setDecouverte(true);
 					_modele.setNbCaseDecouverte(1);
+				}
+				
+				// SI win
+				if (_modele.verifGagne()) 
+				{
+					_vue.StoperTimer();
+					new VueScore(Integer.parseInt(_vue.lblTemps.getText()));
 				}
 
 			} 
@@ -73,6 +71,7 @@ public class ControleurCase implements MouseListener {
 			{
 				if (!_case.isDecouverte() )
 				{
+
 					if (!_case.isFlag() )
 					{
 						if (_modele.EstBombe(_case.getPosX(), _case.getPosY()))
@@ -90,6 +89,13 @@ public class ControleurCase implements MouseListener {
 						_case.setFlag(false);
 						_btnCase.setIcon(null);
 						_vue.setNbDrap(_vue.getNbDrap() + 1);
+					}
+					
+					// SI win
+					if (_modele.verifGagne()) 
+					{
+						_vue.StoperTimer();
+						new VueScore(Integer.parseInt(_vue.lblTemps.getText()));
 					}
 				}
 			}
